@@ -21,18 +21,18 @@ namespace Business.Concrete
             if (brand.BrandName.Length > 2)
             {
                 _brandDal.Add(brand);
-                Console.WriteLine("Marka başarıyla eklendi.");
+                Console.WriteLine("Brand added succesfully.");
             }
             else
             {
-                Console.WriteLine($"Lütfen marka isminin uzunluğunu 2 karakterden fazla giriniz. Girdiğiniz marka ismi : {brand.BrandName}");
+                Console.WriteLine($"Please enter the length of the brand name more than 2 characters. The brand name you entered : {brand.BrandName}");
             }
         }
 
         public void Delete(Brand brand)
         {
             _brandDal.Delete(brand);
-            Console.WriteLine("Marka başarıyla silindi.");
+            Console.WriteLine("Brand deleted successfully.");
 
         }
 
@@ -51,11 +51,11 @@ namespace Business.Concrete
             if (brand.BrandName.Length >= 2)
             {
                 _brandDal.Update(brand);
-                Console.WriteLine("Marka başarıyla Güncellendi.");
+                Console.WriteLine("Brand updated successfully.");
             }
             else
             {
-                Console.WriteLine($"Lütfen marka isminin uzunluğunu 1 karakterden fazla giriniz. Girdiğiniz marka ismi : {brand.BrandName}");
+                Console.WriteLine($"Please enter the length of the brand name more than 1 character. The brand name you entered: {brand.BrandName}");
             }
         }
     }

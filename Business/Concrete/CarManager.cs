@@ -22,18 +22,18 @@ namespace Business.Concrete
             if (car.DailyPrice > 0)
             {
                 _carDal.Add(car);
-                Console.WriteLine("Araba başarıyla eklendi.");
+                Console.WriteLine("Car added successfully.");
             }
             else
             {
-                Console.WriteLine($"Lütfen günlük fiyat kısmını 0'dan büyük giriniz. Girdiğiniz değer : {car.DailyPrice}");
+                Console.WriteLine($"Please enter the daily price part higher than 0. The value you entered : {car.DailyPrice}");
             }
         }
 
         public void Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("Araba başarıyla silindi.");
+            Console.WriteLine("Car deleted successfully.");
 
         }
 
@@ -74,11 +74,11 @@ namespace Business.Concrete
             if (car.DailyPrice > 0)
             {
                 _carDal.Update(car);
-                Console.WriteLine("Araba başarıyla güncellendi.");
+                Console.WriteLine("Car updated successfully.");
             }
             else
             {
-                Console.WriteLine($"Lütfen günlük fiyat kısmını 0'dan büyük giriniz. Girdiğiniz değer : {car.DailyPrice}");
+                Console.WriteLine($"Please enter the daily price part higher than 0. The value you entered : {car.DailyPrice}");
             }
         }
     }

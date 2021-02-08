@@ -14,9 +14,6 @@ namespace ConsoleUI
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
 
-
-
-
             Console.WriteLine("Brand of the cars with Id 1: \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescriptions");
             foreach (var car in carManager.GetAllByBrandId(1))
             {
@@ -42,7 +39,7 @@ namespace ConsoleUI
 
             Console.WriteLine("\n");
 
-            carManager.Add(new Car { BrandId = 1, ColorId = 2, DailyPrice = -300, ModelYear = "2021", Descriptions = "Otomatik Dizel" });
+            carManager.Add(new Car { BrandId = 1, ColorId = 2, DailyPrice = -300, ModelYear = "2021", Descriptions = "Auto Diesel" });
             brandManager.Add(new Brand { BrandName = "a" });
         }
     }

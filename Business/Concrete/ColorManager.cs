@@ -16,9 +16,9 @@ namespace Business.Concrete
             _colorDal = brandDal;
         }
 
-        public void Add(Color entity)
+        public void Add(Color color)
         {
-            _colorDal.Add(entity);
+            _colorDal.Add(color);
         }
 
         public void Delete(Color color)
@@ -37,9 +37,9 @@ namespace Business.Concrete
             return _colorDal.Get(c => c.ColorId == id);
         }
 
-        public void Update(Color entity)
+        public void Update(Color color)
         {
-            _colorDal.Update(entity);
+            _colorDal.Update(color);
         }
     }
 }
