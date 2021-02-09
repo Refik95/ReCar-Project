@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -80,6 +81,10 @@ namespace Business.Concrete
             {
                 Console.WriteLine($"Please enter the daily price part higher than 0. The value you entered : {car.DailyPrice}");
             }
+        }
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
         }
     }
 }
