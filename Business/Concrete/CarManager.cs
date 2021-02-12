@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -18,73 +20,63 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            if (car.DailyPrice > 0)
+            if (car.DailyPrice >0)
             {
-                _carDal.Add(car);
-                Console.WriteLine("Car added successfully.");
+                return new ErrorResult(Messages.CarNotAdded);
             }
-            else
-            {
-                Console.WriteLine($"Please enter the daily price part higher than 0. The value you entered : {car.DailyPrice}");
-            }
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("Car deleted successfully.");
+            return new SuccessResult(Messages.CarDeleted);
 
         }
 
-        public List<Car> GetAll()
+        public IDataResult <List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult <List<Car>> (_carDal.GetAll());
         }
 
-        public List<Car> GetAllByBrandId(int id)
+        public IDataResult <List<Car>> GetAllByBrandId(int id)
         {
-            return _carDal.GetAll(c => c.BrandId == id);
+            return new SuccessDataResult <List<Car>> (_carDal.GetAll(c => c.BrandId == id));
         }
 
-        public List<Car> GetAllByColorId(int id)
+        public IDataResult <List<Car>> GetAllByColorId(int id)
         {
-            return _carDal.GetAll(c => c.ColorId == id);
-
-        }
-
-        public List<Car> GetByDailyPrice(decimal min, decimal max)
-        {
-            return _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max);
+            return new SuccessDataResult <List<Car>> (_carDal.GetAll(c => c.ColorId == id));
 
         }
 
-        public Car GetById(int id)
+        public IDataResult <List<Car>> GetByDailyPrice(decimal min, decimal max)
         {
-            return _carDal.Get(c => c.CarId == id);
+            return new SuccessDataResult <List<Car>> (_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max));
+
         }
 
-        public List<Car> GetByModelYear(string year)
+        public IDataResult <Car> GetById(int id)
         {
-            return _carDal.GetAll(c => c.ModelYear.Contains(year) == true);
+            return new SuccessDataResult <Car> (_carDal.Get(c => c.CarId == id));
         }
 
-        public void Update(Car car)
+        public IDataResult <List<Car>> GetByModelYear(string year)
         {
-            if (car.DailyPrice > 0)
-            {
-                _carDal.Update(car);
-                Console.WriteLine("Car updated successfully.");
-            }
-            else
-            {
-                Console.WriteLine($"Please enter the daily price part higher than 0. The value you entered : {car.DailyPrice}");
-            }
+            return new SuccessDataResult <List<Car>> (_carDal.GetAll(c => c.ModelYear.Contains(year) == true));
         }
-        public List<CarDetailDto> GetCarDetails()
+
+        public IResult Update(Car car)
         {
-            return _carDal.GetCarDetails();
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
+        }
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
     }
 }
