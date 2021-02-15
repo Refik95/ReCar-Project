@@ -1,7 +1,7 @@
-﻿INSERT INTO Cars(BrandID,ColorID,ModelYear,DailyPrice,Descriptions)
+﻿INSERT INTO Cars(BrandId,ColorId,ModelYear,DailyPrice,Descriptions)
 VALUES
 	('1','2','2012','100','Manuel Gasoline'),
-	('1','3','2015','150','Automatic Diesel'),
+	('1','3','2015','150','Automatic Disel'),
 	('2','1','2017','200','Automatic Hybrid'),
 	('3','3','2014','125','Manuel Diesel');
 
