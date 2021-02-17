@@ -20,7 +20,7 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-
+       
         public IResult Add(Car car)
         {
             if (car.DailyPrice >0)
