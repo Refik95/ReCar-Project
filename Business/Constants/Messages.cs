@@ -38,5 +38,12 @@ namespace Business.Constants
         public static string UpdatedRental = "Car rental process updated";
         public static string FailedRentalAddOrUpdate = "You cannot rent this car as it has not yet been delivered.";
         public static string ReturnedRental = "The car you rented has been delivered.";
+
+        public static string CarMaxImageNumber = "A car can have 5 maximum photos";
+        public static string CarImageAdded = "Car Image added successfully";
+        public static string CarImageDeleted = "Car Image deleted successfully";
+        public static string CarImageUpdated = "Car Image updated successfully";
+        public static string CarImagesListed = "Car Images listed successfully";
+        public static string CarImageAlreadyExists = "Car image already exists";
     }
 }
