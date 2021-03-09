@@ -13,9 +13,43 @@ namespace WebAPI.Controllers
     public class RentalsController : ControllerBase
     {
         IRentalService _rentalService;
+
         public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
+        }
+
+        [HttpPost("add")]
+        public IActionResult Add(Rental rental)
+        {
+            var result = _rentalService.Add(rental);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPut("update")]
+        public IActionResult Update(Rental rental)
+        {
+            var result = _rentalService.Update(rental);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpDelete("delete")]
+        public IActionResult Delete(Rental rental)
+        {
+            var result = _rentalService.Delete(rental);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("getall")]
@@ -24,13 +58,13 @@ namespace WebAPI.Controllers
             var result = _rentalService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result);
         }
 
         [HttpGet("getbyid")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             var result = _rentalService.GetById(id);
             if (result.Success)
@@ -40,10 +74,35 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(Rental rental)
+        [HttpGet("getallrentaldetails")]
+        public IActionResult GetAllCarDetails()
         {
-            var result = _rentalService.Add(rental);
+            var result = _rentalService.GetRentalDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+        [HttpGet("getrentalbycar")]
+        public IActionResult GetCarByColor(int id)
+        {
+
+            var result = _rentalService.GetRentalDetails(I => I.CarId == id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getrentalbycustomer")]
+        public IActionResult GetCarByBrand(int id)
+        {
+
+            var result = _rentalService.GetRentalDetails(I => I.CustomerId == id);
             if (result.Success)
             {
                 return Ok(result);

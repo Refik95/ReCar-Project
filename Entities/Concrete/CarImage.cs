@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class CarImages:IEntity
+    public class CarImage:IEntity
     {
-        public int ImageId { get; set; }
+        public int Id { get; set; }
         public int CarId { get; set; }
+        public DateTime CarImageDate { get; set; }
         public string ImagePath { get; set; }
-        public DateTime ImageDate { get; set; }
     }
 }

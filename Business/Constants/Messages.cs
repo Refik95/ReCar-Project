@@ -45,5 +45,14 @@ namespace Business.Constants
         public static string CarImageUpdated = "Car Image updated successfully";
         public static string CarImagesListed = "Car Images listed successfully";
         public static string CarImageAlreadyExists = "Car image already exists";
+
+        public static string AuthorizationDenied = "You don't have authorization.";
+        public static string UserRegistered = "User registered.";
+
+        public static string UserNotFound = "User not found.";
+        public static string SuccessfulLogin = "Logged in successfully.";
+        public static string PasswordError = "Wrong password!";
+        public static string UserAlreadyExists = "User already exists!";
+        public static string AccessTokenCreated = "Token created.";
     }
 }

@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class CustomerManager:ICustomerService
+    public class CustomerManager : ICustomerService
     {
         ICustomerDal _customerDal;
 
@@ -26,6 +26,7 @@ namespace Business.Concrete
             _customerDal.Add(customer);
             return new SuccessResult(Messages.AddedCustomer);
         }
+
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
@@ -39,9 +40,10 @@ namespace Business.Concrete
 
         public IDataResult<Customer> GetById(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == id));
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id));
         }
 
+        [ValidationAspect(typeof(CustomerValidator))]
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);

@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
@@ -19,23 +20,21 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in filter == null ? context.Cars : context.Cars.Where(filter)
                              join co in context.Colors
-                             on c.ColorId equals co.ColorId
+                             on c.ColorId equals co.Id
                              join b in context.Brands
-                             on c.BrandId equals b.BrandId
-                             join ci in context.CarImagess
-                             on c.CarId equals ci.CarId
+                             on c.BrandId equals b.Id
+                             join ci in context.CarImages
+                             on c.Id equals ci.CarId
                              select new CarDetailDto
                              {
-                                 CarId = c.CarId,
+                                 CarId = c.Id,
                                  BrandName = b.BrandName,
                                  ColorName = co.ColorName,
                                  DailyPrice = c.DailyPrice,
                                  Descriptions = c.Descriptions,
                                  ModelYear = c.ModelYear,
-                                 ImageId = ci.ImageId,
-                                 ImageDate = ci.ImageDate,
+                                 CarImageDate = ci.CarImageDate,
                                  ImagePath = ci.ImagePath
-
                              };
                 return result.ToList();
             }

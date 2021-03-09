@@ -11,19 +11,19 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ColorManager:IColorService
+    public class ColorManager : IColorService
     {
         IColorDal _colorDal;
 
-        public ColorManager(IColorDal colorDal)
+        public ColorManager(IColorDal brandDal)
         {
-            _colorDal = colorDal;
+            _colorDal = brandDal;
         }
 
         [ValidationAspect(typeof(ColorValidator))]
-        public IResult Add(Color color)
+        public IResult Add(Color entity)
         {
-            _colorDal.Add(color);
+            _colorDal.Add(entity);
             return new SuccessResult(Messages.ColorAdded);
         }
 
@@ -31,23 +31,26 @@ namespace Business.Concrete
         {
             _colorDal.Delete(color);
             return new SuccessResult(Messages.ColorDeleted);
-        }
-
-        public IDataResult <List<Color>> GetAll()
-        {
-            return new SuccessDataResult<List<Color>> (_colorDal.GetAll());
 
         }
 
-        public IDataResult <Color> GetById(int id)
+        public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult <Color> (_colorDal.Get(c => c.ColorId == id));
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
+
         }
 
-        public IResult Update(Color color)
+        public IDataResult<Color> GetById(int id)
         {
-            _colorDal.Update(color);
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == id));
+        }
+
+        [ValidationAspect(typeof(ColorValidator))]
+        public IResult Update(Color entity)
+        {
+            _colorDal.Update(entity);
             return new SuccessResult(Messages.ColorUpdated);
+
         }
     }
 }
